@@ -7,15 +7,16 @@ import json
 
 st.set_page_config(page_title="Questionário de Rotina", page_icon="📝")
 
-st.title("📝 Questionário de Rotina em Casa")
-st.write("Responda às perguntas abaixo. Suas respostas serão salvas em um arquivo CSV no GitHub.")
+st.title("📝 Questionário de Rotina")
+st.write("Responda às perguntas a seguir e ajude em nossa pesquisa.")
 
 # --- Perguntas ---
 with st.form("formulario"):
-    nome = st.text_input("Seu nome (opcional)")
-    q1 = st.text_area("1️⃣ Quais são as maiores dificuldades que você encontra no seu dia a dia em casa?")
-    q2 = st.text_area("2️⃣ O que costuma fazer quando precisa de ajuda ou quando algo dá errado (ex.: um problema de saúde ou uma emergência)?")
-    q3 = st.text_area("3️⃣ O que deixaria a sua rotina mais fácil e confortável?")
+    nome = st.text_input("Seu nome")
+    q1 = st.text_area("1️⃣ Você faz check-up médico anual?")
+    q2 = st.text_area("2️⃣ O que costuma fazer quando precisa de ajuda ou quando algo dá errado e você está sozinho (ex.: emrgência médica)?")
+    q3 = st.text_area("3️⃣ Você tem assistência familiar rotineiramente?")
+    q4 = st.text_area("4️⃣ Você se incomodaria de ter seus sinais vitais monitorados diariamente?")
     enviar = st.form_submit_button("Enviar respostas")
 
 # --- Configurações ---
@@ -66,7 +67,7 @@ def update_csv_to_github(df, sha=None):
 
 # Quando o usuário enviar o formulário
 if enviar:
-    if not (q1 or q2 or q3):
+    if not (q1 or q2 or q3 or q4):
         st.warning("Preencha pelo menos uma resposta antes de enviar.")
     else:
         with st.spinner("Salvando suas respostas..."):
@@ -76,7 +77,8 @@ if enviar:
                 "nome": nome,
                 "pergunta1": q1,
                 "pergunta2": q2,
-                "pergunta3": q3
+                "pergunta3": q3,
+                "pergunta4": q4
             }
             df = pd.concat([df, pd.DataFrame([nova_linha])], ignore_index=True)
             update_csv_to_github(df, sha)
