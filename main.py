@@ -14,7 +14,7 @@ st.write("Responda às perguntas a seguir e ajude em nossa pesquisa.")
 with st.form("formulario"):
     nome = st.text_input("Seu nome")
     q1 = st.text_area("1️⃣ Você faz check-up médico anual?")
-    q2 = st.text_area("2️⃣ O que costuma fazer quando precisa de ajuda ou quando algo dá errado e você está sozinho (ex.: emrgência médica)?")
+    q2 = st.text_area("2️⃣ O que costuma fazer quando precisa de ajuda ou quando algo dá errado e você está sozinho (ex.: emergência médica)?")
     q3 = st.text_area("3️⃣ Você tem assistência familiar rotineiramente?")
     q4 = st.text_area("4️⃣ Você se incomodaria de ter seus sinais vitais monitorados diariamente?")
     enviar = st.form_submit_button("Enviar respostas")
